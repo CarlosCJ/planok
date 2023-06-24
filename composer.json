@@ -25,7 +25,14 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "classmap":[
+            "app/Http/Controllers",
+            "app/Models"
+        ],
+        "files": [
+            "app/Http/Controllers/Utiles.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
