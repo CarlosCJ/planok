@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuarios;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Utiles;
+use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
@@ -15,7 +14,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios = Usuarios::get();
+        $usuarios = Usuario::with('profile')->get();
         foreach ($usuarios as $usuario){
             $run = $usuario->rut;
             $dv = self::calcularDV($run);
