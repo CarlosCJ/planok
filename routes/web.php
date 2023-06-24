@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\CotizarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios');
+Route::get('/cotizaciones', [CotizarController::class, 'index'])->name('cotizaciones');
