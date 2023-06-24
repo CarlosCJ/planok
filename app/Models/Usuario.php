@@ -16,4 +16,9 @@ class Usuario extends Model
     {
         return $this->belongsTo(Perfil::class, 'idPerfil');
     }
+
+    public function quotes()
+    {
+        return $this->hasMany(Cotizar::class, 'idUsuario', 'idUsuario');
+    }
 }
