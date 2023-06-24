@@ -22,7 +22,7 @@ ini_set('max_execution_time', 800);
                 <tr>
                     <td>{{ $usuario->rut }}</td>
                     <td>{{ mb_convert_case($usuario->nombre, MB_CASE_TITLE, "UTF-8") }} {{ mb_convert_case($usuario->apellido, MB_CASE_TITLE, "UTF-8") }}</td>
-                    <td>{{ $usuario->correo }}</td>
+                    <td>{{ mb_strtolower($usuario->correo) }}</td>
                     <td>{{ $usuario->idPerfil }}</td>
                     <td>{{ $usuario->estado }}</td>
                     <td>
