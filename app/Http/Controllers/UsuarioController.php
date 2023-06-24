@@ -15,16 +15,6 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::with('profile')->get();
-        foreach ($usuarios as $usuario){
-            $run = $usuario->rut;
-            $dv = self::calcularDV($run);
-            $formattedRun = '';
-            while (strlen($run) > 3) {
-                $formattedRun = '.' . substr($run, -3) . $formattedRun;
-                $run = substr($run, 0, -3);
-            }
-            $usuario->rut = $run . $formattedRun . '-' . $dv;
-        }
         return view('usuarios.index')
             ->with('usuarios', $usuarios);
     }

@@ -21,13 +21,13 @@ ini_set('max_execution_time', 800);
 
             @foreach($usuarios as $usuario)
                 <tr>
-                    <td>{{ $usuario->rut }}</td>
-                    <td>{{ mb_convert_case($usuario->nombre, MB_CASE_TITLE, "UTF-8") }} {{ mb_convert_case($usuario->apellido, MB_CASE_TITLE, "UTF-8") }}</td>
+                    <td>{{ Utiles::calcularDV($usuario->rut) }}</td>
+                    <td>{{ Utiles::capitalizaPrimeraPalabra($usuario->nombre) }} {{ Utiles::capitalizaPrimeraPalabra($usuario->apellido) }}</td>
                     <td>{{ mb_strtolower($usuario->correo) }}</td>
                     <td>{{ $usuario->profile->descripcion }}</td>
                     <td>{{ $usuario->estado }}</td>
                     <td>
-
+                        <button class="btn btn-warning">Sin Acciones</button>
                     </td>
                 </tr>
             @endforeach
