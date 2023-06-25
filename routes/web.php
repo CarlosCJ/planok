@@ -26,3 +26,4 @@ Route::get('/get-data/{id}', [CotizarController::class, 'getData'])->name('get-d
 Route::get('/verDetalle/{id}', [CotizarController::class, 'show'])->name('verDetalle');
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes');
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos');
+Route::get('/cant-productos', [ProductoController::class, 'getTotalDepartamentosVendidos'])->name('cantProductos');

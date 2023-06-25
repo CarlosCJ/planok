@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CotizarProducto;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\Process\Process;
 
 class ProductoController extends Controller
 {
@@ -25,6 +28,26 @@ class ProductoController extends Controller
         $productos->appends($request->query());
         return view('producto.index')
             ->with('productos', $productos);
+    }
+
+    public function getTotalDepartamentosVendidos()
+    {
+        $productosVendidos = DB::table('usuario')
+            ->join('cotizacion', 'usuario.id', '=', 'cotizacion.idUsuario')
+            ->join('cotizacion_producto', 'cotizacion.idCotizacion', '=', 'cotizacion_producto.idCotizacion')
+            ->join('producto', 'cotizacion_producto.idProducto', '=', 'producto.idProducto')
+            ->join('tipo_producto', 'producto.idTipoProducto', '=', 'tipo_producto.idTipoProducto')
+            ->select('usuario.*', 'producto.estado', 'producto.sector', 'tipo_producto.descripcion')
+            ->where('usuario.nombre', '=', 'PILAR')
+            ->where('usuario.apellido', '=', 'PINO')
+            ->where('producto.sector', '=', 'Las Condes')
+            ->where('producto.estado', '=', 'vendido')
+            ->get();
+        $cantProducto = $productosVendidos->count();
+
+        return view('producto.vendidos')
+            ->with('productos', $productosVendidos)
+            ->with('cantProducto', $cantProducto);
     }
 
     /**
