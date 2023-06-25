@@ -20,3 +20,5 @@ Route::get('/', function () {
 });
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios');
 Route::get('/cotizaciones', [CotizarController::class, 'index'])->name('cotizaciones');
+Route::get('/get-data/{id}', [CotizarController::class, 'getData'])->name('get-data');
+Route::get('/verDetalle/{id}', [CotizarController::class, 'show'])->name('verDetalle');
