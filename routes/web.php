@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\CotizarController;
+use App\Http\Controllers\ClienteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +23,4 @@ Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios');
 Route::get('/cotizaciones', [CotizarController::class, 'index'])->name('cotizaciones');
 Route::get('/get-data/{id}', [CotizarController::class, 'getData'])->name('get-data');
 Route::get('/verDetalle/{id}', [CotizarController::class, 'show'])->name('verDetalle');
+Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes');
