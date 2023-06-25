@@ -23,4 +23,9 @@ class Cotizar extends Model
         return $this->belongsTo(Usuario::class, 'idUsuario');
     }
 
+    public function quoteProduct()
+    {
+        return $this->hasMany(CotizarProducto::class, 'idCotizacion');
+    }
+
 }
