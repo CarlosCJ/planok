@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class Utiles {
 
     /**
@@ -53,6 +55,14 @@ class Utiles {
             return '$ ' . number_format($numero, 0, ',', '.');
         } catch (Exception $ex) {
         }
+    }
+
+    /**
+     * Da formato a fecha en dia mes año
+     */
+    public static function getFormateaFecha($date)
+    {
+        return Carbon::parse($date)->format('d-m-Y');
     }
 
 }
