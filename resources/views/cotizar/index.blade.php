@@ -27,7 +27,9 @@ ini_set('max_execution_time', 800);
                     <td>{{ $cotizacion->descuento }}</td>
                     <td>{{  Utiles::ponePuntosNumero($cotizacion->total) }}</td>
                     <td>
-                        <button class="btn btn-info">Ver Detalle</button>
+                        <button type="button" class="btn btn-info btn-ver-detalle" data-url="{{ route('verDetalle', $cotizacion->idCotizacion) }}">
+                            Ver Detalle
+                        </button>
                     </td>
                 </tr>
             @endforeach
@@ -37,3 +39,14 @@ ini_set('max_execution_time', 800);
 
 @stop
 
+@section('scriptJS')
+<script>
+    $(document).ready(function() {
+        $('.btn-ver-detalle').click(function() {
+            var url = $(this).data('url');
+            console.log('valor url '+ url);
+            window.location.href = url;
+        });
+    });
+</script>
+@stop
