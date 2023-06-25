@@ -12,9 +12,19 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $startDate = $request->input('start-date');
+        $endDate = $request->input('end-date');
+
+        $productosQuery = Producto::with('typeProduct');
+        if ($startDate && $endDate) {
+            $productosQuery->whereBetween('fechaCreacion', [$startDate, $endDate]);
+        }
+        $productos = $productosQuery->paginate(10);
+        $productos->appends($request->query());
+        return view('producto.index')
+            ->with('productos', $productos);
     }
 
     /**
