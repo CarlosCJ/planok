@@ -50,6 +50,20 @@ class ProductoController extends Controller
             ->with('cantProducto', $cantProducto);
     }
 
+    public function getTotalVentas(Request $request)
+    {
+        $selectedSector = $request->input('sector');
+        $query = Producto::where('estado', 'VENDIDO')
+            ->groupBy('sector')
+            ->selectRaw('sector, SUM(valorLista) as total');
+        if ($selectedSector) {
+            $query->where('sector', $selectedSector);
+        }
+        $productosVendidos = $query->get();
+        return view('producto.sumas-ventas-santiago')
+            ->with('productos', $productosVendidos);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
