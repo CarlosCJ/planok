@@ -16,7 +16,7 @@ class CotizarController extends Controller
      */
     public function index()
     {
-        $cotizaciones = Cotizar::with('user')->with('customer')->get();
+        $cotizaciones = Cotizar::with('user')->with('customer')->paginate(10);
         return view('cotizar.index')
             ->with('cotizaciones', $cotizaciones);
     }
