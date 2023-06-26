@@ -31,7 +31,8 @@
             "app/Models"
         ],
         "files": [
-            "app/Http/Controllers/Utiles.php"
+            "app/Http/Controllers/Utiles.php",
+            "app/Helpers.php"
         ]
     },
     "autoload-dev": {
