@@ -18,11 +18,12 @@ class ClienteController extends Controller
     {
 //        $clientes = Cliente::with('quotes.quoteProduct.product.typeProduct')->get();
         $clientes = DB::table('cliente')
-            ->join('cotizacion', 'cliente.id', '=', 'cotizacion.idCliente')
+            ->rightJoin('cotizacion', 'cliente.id', '=', 'cotizacion.idCliente')
             ->join('cotizacion_producto', 'cotizacion.idCotizacion', '=', 'cotizacion_producto.idCotizacion')
             ->join('producto', 'cotizacion_producto.idProducto', '=', 'producto.idProducto')
             ->join('tipo_producto', 'producto.idTipoProducto', '=', 'tipo_producto.idTipoProducto')
-            ->select('cliente.*', 'producto.estado', 'producto.sector', 'tipo_producto.descripcion');
+            ->select('cliente.*', 'producto.estado', 'producto.sector', 'tipo_producto.descripcion')
+            ->distinct();
         if ($request->has('estado') && $request->estado != '') {
             $clientes->where('producto.estado', $request->estado);
         }
