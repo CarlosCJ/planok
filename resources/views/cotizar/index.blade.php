@@ -6,6 +6,7 @@ ini_set('max_execution_time', 800);
 @section('content')
 
 <div class="container pt-md-5 pb-md-5 pt-3 pb-3">
+    <h1>Cotizaciones</h1>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -18,14 +19,13 @@ ini_set('max_execution_time', 800);
             </tr>
         </thead>
         <tbody>
-
             @foreach($cotizaciones as $cotizacion)
                 <tr>
                     <td>{{ $cotizacion->idCotizacion }}</td>
                     <td>{{ Utiles::calcularDV($cotizacion->customer->rut) }}</td>
                     <td>{{ Utiles::ponePuntosNumero($cotizacion->subtotal) }}</td>
                     <td>{{ $cotizacion->descuento }}</td>
-                    <td>{{  Utiles::ponePuntosNumero($cotizacion->total) }}</td>
+                    <td>{{ Utiles::ponePuntosNumero($cotizacion->total) }}</td>
                     <td>
                         <button type="button" class="btn btn-info btn-ver-detalle" data-url="{{ route('verDetalle', $cotizacion->idCotizacion) }}">
                             Ver Detalle
@@ -35,6 +35,7 @@ ini_set('max_execution_time', 800);
             @endforeach
         </tbody>
     </table>
+    {{ $cotizaciones->appends(request()->query())->links() }}
 </div>
 
 @stop
