@@ -41,7 +41,6 @@ ini_set('max_execution_time', 800);
                 </tr>
             </thead>
             <tbody>
-
                 @foreach($productos as $producto)
                     <tr>
                         <td>{{ $producto->typeProduct->descripcion }}</td>
@@ -57,7 +56,7 @@ ini_set('max_execution_time', 800);
                 @endforeach
             </tbody>
         </table>
-        {{ $productos->appends(request()->query())->links() }}
+        {{ $productos->links() }}
     @else
         <div class="alert alert-danger">
             No hay datos disponibles entre las fechas seleccionadas.
