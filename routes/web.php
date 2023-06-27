@@ -19,7 +19,7 @@ use App\Http\Controllers\ProductoController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios');
 Route::get('/cotizaciones', [CotizarController::class, 'index'])->name('cotizaciones');
 Route::get('/get-data/{id}', [CotizarController::class, 'getData'])->name('get-data');
