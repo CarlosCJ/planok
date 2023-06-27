@@ -27,9 +27,6 @@ ini_set('max_execution_time', 800);
                     <td>{{ $cotizacion->descuento }}</td>
                     <td>{{ Utiles::ponePuntosNumero($cotizacion->total) }}</td>
                     <td>
-{{--                        <button type="button" class="btn btn-info btn-ver-detalle" data-url="{{ route('verDetalle', $cotizacion->idCotizacion) }}">--}}
-{{--                            Ver Detalle--}}
-{{--                        </button>--}}
                         <button class="btn btn-info btn-ver-detalle" data-id="{{ $cotizacion->idCotizacion }}">Ver detalles</button>
                     </td>
                 </tr>
@@ -65,14 +62,10 @@ ini_set('max_execution_time', 800);
     $(document).ready(function() {
         $('.btn-ver-detalle').click(function() {
             var id = $(this).data('id');
-            console.log(id);
             $.ajax({
                 url: '/get-data/' + id,
                 type: 'GET',
                 success: function(response) {
-                    console.log(response);
-                    // var html = generateModalContent(response);
-                    // $('#modal-detalle .modal-body').html(html);
                     var detalleHtml = generateDetalleHtml(response);
                     $('#modal-detalle .modal-body').html(detalleHtml);
                     $('#modal-detalle').modal('show');
@@ -179,6 +172,7 @@ ini_set('max_execution_time', 800);
 
     function generateUsuarioHtml(usuario) {
         var id = usuario.id;
+        var rut = usuario.rut;
         var nombreCompleto = capitalizeFirstWord(usuario.nombre) + ' ' + capitalizeFirstWord(usuario.apellido);
         var email = usuario.correo.toLowerCase();
         var edad = usuario.edad;
