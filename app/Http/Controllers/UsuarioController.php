@@ -19,30 +19,6 @@ class UsuarioController extends Controller
             ->with('usuarios', $usuarios);
     }
 
-    function calcularDV($run) {
-        $run = str_replace('.', '', $run);
-        $run = str_replace('-', '', $run);
-
-        $reversedRun = strrev($run);
-        $factor = 2;
-        $sum = 0;
-
-        for ($i = 0; $i < strlen($reversedRun); $i++) {
-            $sum += intval($reversedRun[$i]) * $factor;
-            $factor = $factor % 7 === 0 ? 2 : $factor + 1;
-        }
-
-        $dv = 11 - ($sum % 11);
-
-        if ($dv === 10) {
-            $dv = 'K';
-        } elseif ($dv === 11) {
-            $dv = '0';
-        }
-
-        return $dv;
-    }
-
     /**
      * Show the form for creating a new resource.
      *
